@@ -22,6 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body>
-    {%block content%} {%endblock%}
+    {%include 'news/includes/nav.jinja'%}
+    <div class="container">{%block content%} {%endblock%}</div>
   </body>
 </html>
