@@ -6,8 +6,31 @@ from django.http import HttpResponse
 # def home(request):
 #     return HttpResponse('<h1> Hello there news app</h1>')
 
+posts = [
+    {
+        'author':'Amin',
+        'title':'post one',
+        'content':'post content one',
+        'date':'12 May 2021'
+    },
+    {
+        'author':'Hassan',
+        'title':'post Two',
+        'content':'post content Two',
+        'date':'11 May 2021'
+    },
+    {
+        'author':'Abdi',
+        'title':'post Three',
+        'content':'post content Three',
+        'date':'1 May 2021'
+    }
+]
 def home(request):
-    return render(request,template_name="news/home.html")
+    context = {
+        'posts':posts
+    }
+    return render(request,"news/home.html",context)
 
 def about(request):
     return render(request,template_name="news/about.jinja")
