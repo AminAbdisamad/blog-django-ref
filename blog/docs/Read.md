@@ -124,6 +124,8 @@ python manage.py createsuperuser
 
 after creating and migrating models into the database, to view tables that are in the database (find the app name and migration number) run this command
 
+`python manage.py sqlmigrate <app-name> <migration-number>`
+
 ```shell
 python manage.py sqlmigrate pages 0001
 ```
@@ -138,6 +140,10 @@ ted" datetime NOT NULL, "author_id" integer NOT NULL REFERENCES "auth_user" ("id
 CREATE INDEX "pages_post_author_id_c4673f6e" ON "pages_post" ("author_id");
 COMMIT;
 ```
+
+## Accessing shell
+
+`python manage.py shell`
 
 ### Styling Django Forms with crispy froms
 
