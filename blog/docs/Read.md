@@ -75,6 +75,33 @@ To create your app, make sure you’re in the same directory as manage.py and ty
 python manage.py startapp pages
 ```
 
+## Setting up django with postgresql
+
+create postgres username and password
+
+```bash
+CREATE USER django_news_user with PASSWORD  'django_news_secret';
+
+create database django_news with owner django_news_user;
+```
+
+run this command to install `psycopg2`  
+`pip install django psycopg2`
+at the bottom of the `setting.py` file in your django project change `sqllite3` configuration to posgres like this
+
+```bash
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'myproject',
+        'USER': 'myprojectuser',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+```
+
 #### Create Migrations
 
 Database migrations allows us to apply some changes to the database
@@ -147,5 +174,5 @@ Now, we'll load it in our template and use it
 
 ### Copyright and License
 
-© Membership Application, ASAL SOLUTIONS
+© Django blog Application, ASAL SOLUTIONS
 licensed under [MIT License](LICENSE)
