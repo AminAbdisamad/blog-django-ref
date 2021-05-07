@@ -4,8 +4,14 @@
      <a href="/" class="brand-logo">News App</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{% url 'news-about' %}">About</a></li>
-        <li><a href="{% url 'auth-login'%}">Login</a></li>
-        <li><a href="{% url 'auth-register' %}">Register</a></li>
+        {%if user.is_authenticated%}
+            {% comment %} Do something {% endcomment %}
+            <li><a href="#">Welcome, {{user.username}}</a></li>
+            <li><a href="{% url 'auth-logout'%}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'auth-login'%}">Login</a></li>
+            <li><a href="{% url 'auth-register' %}">Register</a></li>
+        {% endif %}
       </ul>
     </div>
     </div>
