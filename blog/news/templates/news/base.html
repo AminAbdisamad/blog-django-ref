@@ -23,7 +23,16 @@
   </head>
   <body>
     {%include 'news/includes/nav.jinja'%}
-    <div class="container">{%block content%} {%endblock%}</div>
+    <div class="container">
+      <!-- DISPLAY MESSAGES -->
+      {%if messages%} {%for message in messages%}
+      <div class="message">
+        <div class="{{message.tag}}">{{message}}</div>
+      </div>
+      {%endfor%} {%endif%}
+      <div class="container">{%block content%} {%endblock%}</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </html>
