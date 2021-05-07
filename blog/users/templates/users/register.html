@@ -1,7 +1,7 @@
-{% extends 'news/base.html'%} {%block content%}
-<h2>User registration form</h2>
+{% extends 'news/base.html'%} {% load crispy_forms_tags %} {%block content%}
+<h3>User registration form</h3>
 <form method="post">
-  {%csrf_token%} {{form.as_p}}
+  {%csrf_token%} {{ form|crispy }}
   <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 {%endblock content%}
