@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def auth(request):
-    return render(request,'users/auth.jinja')
+
 
 def register(request):
     if request.method == 'POST':
@@ -18,3 +18,7 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request,'users/register.jinja',{'form':form})
+
+@login_required
+def profile(request):
+    return render(request,'users/profile.jinja')
