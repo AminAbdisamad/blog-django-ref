@@ -5,7 +5,7 @@ from django.contrib import messages
 # Create your views here.
 
 def auth(request):
-    return render(request,'users/auth.html')
+    return render(request,'users/auth.jinja')
 
 def register(request):
     if request.method == 'POST':
@@ -17,4 +17,4 @@ def register(request):
             return redirect('news-home')
     else:
         form = UserRegisterForm()
-    return render(request,'users/register.html',{'form':form})
+    return render(request,'users/register.jinja',{'form':form})
