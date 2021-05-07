@@ -11,7 +11,7 @@ def home(request):
     context = {
         'posts':Post.objects.all()
     }
-    return render(request,"news/home.html",context)
+    return render(request,"news/home.jinja",context)
 
 def about(request):
     return render(request,template_name="news/about.jinja")
