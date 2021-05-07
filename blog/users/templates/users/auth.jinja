@@ -1,3 +1,11 @@
-{% extends 'news/base.jinja'%} {%block content%}
-<h1>I am auth</h1>
+{% extends 'news/base.jinja'%}
+{% load crispy_forms_tags %} 
+{%block content%}
+  <h4>User Login form</h4>
+  <form method="post">
+    {%csrf_token%}
+    {{ form|crispy }}
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+
 {%endblock content%}

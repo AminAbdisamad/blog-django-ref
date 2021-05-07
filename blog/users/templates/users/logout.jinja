@@ -1,0 +1,5 @@
+{% extends 'news/base.jinja'%}
+{%block content%}
+  <h5>You have been logout</h5>
+  <a href="{% url 'auth-login' %}">Login Again</a>
+{%endblock content%}

@@ -132,3 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #! Crispy forms use bootsrap 2.0 by default however, we want to use materializecss
 CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
+#! Redirect to home when logged in 
+LOGIN_REDIRECT_URL = 'news-home' 
