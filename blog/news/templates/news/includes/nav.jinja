@@ -4,8 +4,8 @@
       <a href="/" class="brand-logo">Logo</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="{% url 'news-about' %}">About</a></li>
-        <li><a href="badges.html">Login</a></li>
-        <li><a href="collapsible.html">Register</a></li>
+        <li><a href="{% url 'auth-login'%}">Login</a></li>
+        <li><a href="{% url 'auth-register' %}">Register</a></li>
       </ul>
     </div>
     </div>
