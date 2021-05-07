@@ -1,4 +1,14 @@
 {% extends 'news/base.jinja'%}
 {%block content%}
-<h1>{{user.username}}</h1>
+<h5>User Profile</h5>
+<div class="profile-section">
+<div class="user-image">
+<img src="{{ user.profile.image.url }}" alt=""/>
+</div>
+<div class="user-info">
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+</div>
+
+</div>
 {%endblock%}
