@@ -1,14 +1,21 @@
 {% extends 'news/base.jinja'%}
+{% load crispy_forms_tags %} 
 {%block content%}
 <h5>User Profile</h5>
 <div class="profile-section">
-<div class="user-image">
-<img src="{{ user.profile.image.url }}" alt=""/>
+    <div class="user-image">
+        <img src="{{ user.profile.image.url }}" alt=""/>
+    </div>
+    <div class="user-info">
+        <p>Username: {{user.username}}</p>
+        <p>Email: {{user.email}}</p>
+    </div>
 </div>
-<div class="user-info">
-<p>Username: {{user.username}}</p>
-<p>Email: {{user.email}}</p>
-</div>
-
-</div>
+{% comment %} form {% endcomment %}
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{ user_form|crispy }}
+    {{ profile_form|crispy}}
+    <button class="btn btn-primary" type="submit">Updated Profile</button>
+</form>
 {%endblock%}
