@@ -6,7 +6,7 @@
         
         <img src="{{ post.author.profile.image.url}}" alt=""/>
         
-        <span class="card-title"> {{post.title}}</span>
+        <span class="card-title"> <a href="{%url 'post-detail' post.id %}">{{post.title}}</a></span>
         <p>{{post.content}}</p>
       </div>
       <div class="card-action">

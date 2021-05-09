@@ -1,0 +1,18 @@
+{% extends 'news/base.jinja'%} 
+{%block content%}
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+        <img src="{{ object.author.profile.image.url}}" alt="" />
+        <span class="card-title"> {{object.title}}</span>
+        <p>{{object.content}}</p>
+      </div>
+      <div class="card-action">
+        by <a href="#">{{object.author}}</a>
+        <a href="#">{{object.date_posted}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
