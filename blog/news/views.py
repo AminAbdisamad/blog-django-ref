@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from .models import Post
 # Create your views here.
 
@@ -17,7 +17,9 @@ class PostListView(ListView):
     ordering = '-date_posted'
 
 
-
+class PostDetailView(DetailView):
+    model = Post
+    template_name ="news/post_detail.jinja"
 
 # def home(request): 
 #     context = {
