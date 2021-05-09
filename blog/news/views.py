@@ -1,6 +1,7 @@
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 from .models import Post
 # Create your views here.
 
@@ -21,6 +22,15 @@ class PostDetailView(DetailView):
     model = Post
     template_name ="news/post_detail.jinja"
 
+class CreatePostView(CreateView):
+    model = Post
+    fields = ['title','content']
+    template_name = 'news/post_create.jinja'
+
+    def form_valid(self, form):
+        print(self.request.user)
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 # def home(request): 
 #     context = {
 #         'posts':Post.objects.all()

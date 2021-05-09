@@ -145,6 +145,15 @@ COMMIT;
 
 `python manage.py shell`
 
+```bash
+
+
+```
+
+Reverse vs Redirect
+
+Redirect redirects you to a specific route whilte Reverse returns the full url to that route as a string so that your view will handle the redirecting
+
 ### Styling Django Forms with crispy froms
 
 Crispy Forms will allow us to put simple tags in our template that will style our dango form in bootstrap fashion or any other CSS framework. In this case we're using materializeCSS
