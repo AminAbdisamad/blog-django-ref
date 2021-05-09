@@ -1,7 +1,8 @@
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView,DetailView,CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
 from .models import Post
 # Create your views here.
 
@@ -22,20 +23,34 @@ class PostDetailView(DetailView):
     model = Post
     template_name ="news/post_detail.jinja"
 
-class CreatePostView(CreateView):
+class CreatePostView(LoginRequiredMixin,CreateView):
     model = Post
     fields = ['title','content']
     template_name = 'news/post_create.jinja'
+    
 
-    def form_valid(self, form):
+    def form_valid(self, form:BaseModelForm)->HttpResponse:
         print(self.request.user)
         form.instance.author = self.request.user
         return super().form_valid(form)
-# def home(request): 
-#     context = {
-#         'posts':Post.objects.all()
-#     }
-#     return render(request,"news/home.jinja",context)
+
+
+class UpdatePostView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title','content']
+    template_name = 'news/post_update.jinja'
+
+    def form_valid(self, form:BaseModelForm)->HttpResponse:
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
 
 def about(request):
     return render(request,template_name="news/about.jinja")
