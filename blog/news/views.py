@@ -4,10 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView,DeleteView)
 from .models import Post
-# Create your views here.
 
-# def home(request):
-#     return HttpResponse('<h1> Hello there news app</h1>')
+
 
 class PostListView(ListView):
     # Where to get list of view
