@@ -12,7 +12,7 @@
         by <a href="#">{{object.author}}</a>
         <a href="#">{{object.date_posted}}</a>
         {% if user == object.author %}
-        <a class="btn red" href="#">Delete</a>
+        <a class="btn red" href="{% url 'post-delete' object.id %}">Delete</a>
         <a class="btn green" href="{% url 'post-update' object.id %}">Update</a>
         {%endif%}
       </div>

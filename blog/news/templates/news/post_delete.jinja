@@ -1,0 +1,13 @@
+{% extends 'news/base.jinja'%}
+{% load crispy_forms_tags %} 
+{%block content%}
+ <h3>Delete Post</h3>
+ <form method="Post">
+    {%csrf_token%}
+    <p> Are you sure you want to delte "{{object.title}}"? </p>
+    <button class="btn red" type="submit">Yes, Delete Post</button>
+    <a class="btn" href="{% url 'post-detail' object.id %}">No, Cancel</a>
+</form>
+{%endblock content%}
+
+
