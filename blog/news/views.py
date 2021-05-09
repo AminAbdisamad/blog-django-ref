@@ -67,4 +67,5 @@ def about(request):
     return render(request,template_name="news/about.jinja")
 
 def contact(request):
+    # Testing with git reset
     return HttpResponse('<h1>Contact here</h1>')
