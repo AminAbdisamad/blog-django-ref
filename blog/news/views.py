@@ -15,6 +15,7 @@ class PostListView(ListView):
     # by default it looks for <app>/<model_list>.<extention> ex. news/post_list.html
     template_name ="news/home.jinja"
     ordering = '-date_posted'
+    paginate_by = '2'
 
 
 class PostDetailView(DetailView):
