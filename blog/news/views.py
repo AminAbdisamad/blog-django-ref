@@ -4,10 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView,DeleteView)
 from .models import Post
-# Create your views here.
 
-# def home(request):
-#     return HttpResponse('<h1> Hello there news app</h1>')
+
 
 class PostListView(ListView):
     # Where to get list of view
@@ -17,6 +15,7 @@ class PostListView(ListView):
     # by default it looks for <app>/<model_list>.<extention> ex. news/post_list.html
     template_name ="news/home.jinja"
     ordering = '-date_posted'
+    paginate_by = '2'
 
 
 class PostDetailView(DetailView):
@@ -69,4 +68,5 @@ def about(request):
     return render(request,template_name="news/about.jinja")
 
 def contact(request):
+    # Testing with git reset
     return HttpResponse('<h1>Contact here</h1>')
