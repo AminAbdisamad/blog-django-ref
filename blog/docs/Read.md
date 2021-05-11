@@ -1,19 +1,24 @@
 # Django Blog Application
 
-This is the docs for the membership application
+Django blog application
 
 ## Project Requirements
 
 Make sure you have **Python3** and **Django** Installed, to check whether python3 and django is installed type the following commands in your terminal
+Make sure you have python installed
 
 ```shell
 python3 --version
 ```
 
+Make sure you have installed Django
+
 ```shell
 python3 -m django --version
 
 ```
+
+Or Install following these instructions
 
 ## Installations
 
