@@ -6,8 +6,8 @@ from django.conf import settings
 from users.views import profile
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('',include('news.urls')),
+    path('admin/', admin.site.urls),
     path('auth/',include('users.urls')),
     path('profile/',profile, name="profile")
 ]
