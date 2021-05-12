@@ -19,6 +19,36 @@ class PostListView(ListView):
     template_name ="news/home.jinja"
     ordering = '-date_posted'
     paginate_by = '4'
+    
+    # Adding search funcitonality 
+    def get_queryset(self):
+        search_input = self.request.GET.get('search-input') or None
+        # search_input = self.kwargs.get('search-input', '')
+        object_list = Post.objects.all()
+        if search_input:
+            object_list = object_list.filter(title__icontains=search_input)
+        return object_list
+
+    # Adding search funcitonality 
+    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+    #     context  = super().get_context_data(**kwargs)
+    #     search_input =  self.request.GET.get('search-input') or None
+    #     if search_input:
+    #         # c = context['posts'] = context['posts'].filter(title__icontains=search_input)  
+    #         results = Post.objects.filter(title__icontains=search_input).values()
+    #         for result in results:
+    #             print(result["title"])
+        
+            
+    #     return super().get_context_data(**kwargs)
+       
+        
+        # print('GET Method', self.request.GET.get('search-input') )
+        # search_input = self.request.GET.get('search-input') or None
+        # print(search_input)
+        # if search_input:
+        #     context['posts'] = context['posts'].filter(title__icontains=search_input)  
+        return context
 
 
 class PostDetailView(DetailView):
@@ -35,10 +65,6 @@ class CreatePostView(LoginRequiredMixin,CreateView):
         print(self.request.user)
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
-   
-
-
 
 class UpdatePostView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
     model = Post
@@ -81,7 +107,7 @@ class UserPostListView(ListView):
         user = get_object_or_404(User,username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by("-date_posted")
     
-    #! Each user should get their own data
+    # #! Each user should get their own data
     # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
     #     context =  super().get_context_data(**kwargs)
     #     return context['posts'].filter(author=self.request.user)
