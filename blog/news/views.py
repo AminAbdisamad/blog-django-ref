@@ -1,7 +1,9 @@
+from typing import Any, Dict
 from django.forms.models import BaseModelForm
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, request
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView,DeleteView)
 from .models import Post
@@ -33,6 +35,9 @@ class CreatePostView(LoginRequiredMixin,CreateView):
         print(self.request.user)
         form.instance.author = self.request.user
         return super().form_valid(form)
+    
+   
+
 
 
 class UpdatePostView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
@@ -43,7 +48,8 @@ class UpdatePostView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
     def form_valid(self, form:BaseModelForm)->HttpResponse:
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
+
+    # Users can only update their data
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
@@ -53,9 +59,10 @@ class UpdatePostView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
 class DeletePostView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'news/post_delete.jinja'
-    success_url = '/'
+    # success_url = '/'
+    success_url = reverse_lazy('news-home')
     
-
+    # Users can only delete their posts
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
@@ -69,9 +76,15 @@ class UserPostListView(ListView):
     template_name ="news/user_post_list.jinja"
     paginate_by = '4'
 
+    # Get all data from a specific user 
     def get_queryset(self):
         user = get_object_or_404(User,username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by("-date_posted")
+    
+    #! Each user should get their own data
+    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+    #     context =  super().get_context_data(**kwargs)
+    #     return context['posts'].filter(author=self.request.user)
 
 def about(request):
     return render(request,template_name="news/about.jinja")
