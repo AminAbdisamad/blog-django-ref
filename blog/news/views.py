@@ -29,18 +29,12 @@ class PostListView(ListView):
             object_list = object_list.filter(title__icontains=search_input)
         return object_list
 
-    # Adding search funcitonality 
-    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-    #     context  = super().get_context_data(**kwargs)
-    #     search_input =  self.request.GET.get('search-input') or None
-    #     if search_input:
-    #         # c = context['posts'] = context['posts'].filter(title__icontains=search_input)  
-    #         results = Post.objects.filter(title__icontains=search_input).values()
-    #         for result in results:
-    #             print(result["title"])
-        
-            
-    #     return super().get_context_data(**kwargs)
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context  = super().get_context_data(**kwargs)
+        search_input =  self.request.GET.get('search-input') or None
+        context['search_input'] = search_input 
+        return context
        
         
         # print('GET Method', self.request.GET.get('search-input') )
