@@ -14,6 +14,8 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['first_name','last_name','username','email','password1','password2']
 
+        
+#  User Update form
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
