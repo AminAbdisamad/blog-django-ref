@@ -58,7 +58,7 @@ django-admin startproject app
 
 ## The development server
 
-Let’s verify our project works. Change into the parent directory and run the following commands:
+To start the application on development server, type this command.
 
 ```shell
 python manage.py runserver
